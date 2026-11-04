@@ -1,0 +1,62 @@
+{
+  "expo": {
+    "name": "Rebel Dia",
+    "slug": "poggersroutine",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/LanternaIcon.png",
+    "scheme": "rotinaapp",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.juju.poggersroutine"
+    },
+    "android": {
+      "package": "com.juju.poggersroutine",
+      "icon": "./assets/images/LanternaIcon.png",
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.USE_EXACT_ALARM"
+      ]
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#000000",
+          "image": "./assets/images/splash-empty.png",
+          "imageWidth": 128
+        }
+      ],
+      "expo-notifications",
+      "./plugins/withTarotIcons",
+      [
+        "expo-navigation-bar",
+        {
+          "enforceContrast": false
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "expo-navigation-bar": {
+        "enforceContrast": false
+      },
+      "eas": {
+        "projectId": "e81d3d16-c663-4e6b-93f7-de4fbab322f6"
+      }
+    },
+    "owner": "juju.develops"
+  }
+}
