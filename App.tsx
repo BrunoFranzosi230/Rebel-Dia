@@ -1,6 +1,8 @@
 import Tabs from "@/navigation/Tabs";
 import SplashOverlay from "@/components/splash/SplashOverlay";
+import { FONT_FILES } from "@/fonts";
 import { RotinaProvider, useApp } from "@/store/RotinaProvider";
+import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { KeyboardProvider } from "react-native-keyboard-controller";
@@ -12,10 +14,11 @@ SplashScreen.preventAutoHideAsync().catch(() => {});
 
 function Root() {
   const { ready } = useApp();
+  const [fontsLoaded, fontError] = useFonts(FONT_FILES);
   return (
     <>
       <Tabs />
-      <SplashOverlay ready={ready} />
+      <SplashOverlay ready={ready && (fontsLoaded || !!fontError)} />
     </>
   );
 }

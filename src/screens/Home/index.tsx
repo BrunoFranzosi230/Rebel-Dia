@@ -4,7 +4,7 @@ import { Chip, Txt } from "@/components/ui";
 import { useSwipe } from "@/hooks/useSwipe";
 import useWeather from "@/hooks/useWeather";
 import { useApp } from "@/store/RotinaProvider";
-import { useTheme } from "@/theme";
+import { useTheme, useThemeSet } from "@/theme";
 import { MN, PER, WDL, WDN, cap, dk, fromKey, pocc, vis } from "@/utils/rotina";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { memo, useEffect, useMemo, useRef, useState } from "react";
@@ -26,6 +26,7 @@ const Ring = memo(function Ring({
   n: number;
 }) {
   const c = useTheme(),
+    set = useThemeSet(),
     S = 42,
     t = 3.5,
     r = (S - t) / 2,
@@ -39,30 +40,33 @@ const Ring = memo(function Ring({
         justifyContent: "center",
       }}
     >
-      <Svg width={S} height={S} style={{ position: "absolute" }}>
-        <Circle
-          cx={S / 2}
-          cy={S / 2}
-          r={r}
-          stroke={c.ln}
-          strokeWidth={t}
-          fill="none"
-        />
-        {p > 0 && (
+      {/* o tema Persona 5 não mostra o círculo de progresso */}
+      {set !== "persona5" && (
+        <Svg width={S} height={S} style={{ position: "absolute" }}>
           <Circle
             cx={S / 2}
             cy={S / 2}
             r={r}
-            stroke={c.cy}
+            stroke={c.ln}
             strokeWidth={t}
             fill="none"
-            strokeLinecap="round"
-            strokeDasharray={`${L * Math.min(p, 1)} ${L}`}
-            rotation={-90}
-            origin={`${S / 2}, ${S / 2}`}
           />
-        )}
-      </Svg>
+          {p > 0 && (
+            <Circle
+              cx={S / 2}
+              cy={S / 2}
+              r={r}
+              stroke={c.cy}
+              strokeWidth={t}
+              fill="none"
+              strokeLinecap="round"
+              strokeDasharray={`${L * Math.min(p, 1)} ${L}`}
+              rotation={-90}
+              origin={`${S / 2}, ${S / 2}`}
+            />
+          )}
+        </Svg>
+      )}
       <View
         style={{
           width: 30,
@@ -257,7 +261,9 @@ export default function Home() {
             style={{ flexDirection: "row", alignItems: "center" }}
           >
             <View style={{ flex: 1 }}>
-              <Txt style={{ fontWeight: "600" }}>Caminhos do dia</Txt>
+              <Txt title style={{ fontWeight: "600" }}>
+                Caminhos do dia
+              </Txt>
               {!!an.length && (
                 <Txt mu style={{ fontSize: 13, marginTop: 2 }}>
                   {an.join(" · ")}

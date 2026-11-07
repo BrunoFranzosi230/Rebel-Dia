@@ -88,7 +88,7 @@ export default function useRoutineState() {
           };
           setSettingsState(merged);
           // aplica o tema antes de mostrar a tela (sem piscar no tema errado)
-          Appearance.setColorScheme(merged.theme);
+          Appearance.setColorScheme?.(merged.theme); // não existe na web
         }
       } catch {}
       setReady(true);
@@ -120,7 +120,7 @@ export default function useRoutineState() {
 
   // tema: sobrepõe o esquema de cores do app inteiro (claro ou escuro)
   useEffect(() => {
-    Appearance.setColorScheme(settings.theme);
+    Appearance.setColorScheme?.(settings.theme);
   }, [settings.theme]);
 
   // canal de notificação do som escolhido (cada som tem o seu; o agendamento espera ele existir)

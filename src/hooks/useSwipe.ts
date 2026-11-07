@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Animated, Easing, PanResponder } from "react-native";
+import { Animated, Easing, PanResponder, Platform } from "react-native";
 
 const SW = 360; // distância do deslize (maior que a largura da tela)
 
@@ -63,6 +63,8 @@ export function useSwipe(onShift: (dir: number) => void) {
   }, [tx, go]);
 
   const style = {
+    // na web, arrastar não pode selecionar o texto nem ser tomado pela rolagem horizontal
+    ...(Platform.OS === "web" && ({ userSelect: "none", touchAction: "pan-y" } as object)),
     transform: [{ translateX: tx }],
     opacity: tx.interpolate({
       inputRange: [-SW, 0, SW],

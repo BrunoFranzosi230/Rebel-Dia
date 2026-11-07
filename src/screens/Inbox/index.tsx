@@ -76,7 +76,7 @@ export default function Inbox() {
 
   const header = (
     <View style={{ marginBottom: 18 }}>
-      <Txt style={{ fontSize: 34, fontWeight: "800", letterSpacing: -1 }}>
+      <Txt title style={{ fontSize: 34, fontWeight: "800", letterSpacing: -1 }}>
         Inbox
       </Txt>
       <Txt mu style={{ fontSize: 15, marginTop: 2 }}>
@@ -112,7 +112,7 @@ export default function Inbox() {
             size={20}
             color={c.mu}
           />
-          <Txt mu style={{ fontSize: 15, fontWeight: "600" }}>
+          <Txt title mu style={{ fontSize: 15, fontWeight: "600" }}>
             Concluídas · {done.length}
           </Txt>
         </Pressable>
