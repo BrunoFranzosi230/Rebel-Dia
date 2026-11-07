@@ -15,7 +15,7 @@ const SETS: DropdownOption[] = [
 
 // Modal "Temas": primeiro o conjunto (Padrão ou Persona 5). No Padrão: claro/escuro e os 22 arcanos
 // maiores, que definem o ícone do app e o da abertura. Persona 5 ainda está em construção: escolher
-// esse conjunto não muda nada na aparência e esconde o resto do modal.
+// esse conjunto troca as fontes, tira o anel dos dias e esconde o resto do modal.
 export default function ThemesSheet({
   visible,
   onClose,

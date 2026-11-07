@@ -103,7 +103,9 @@ export default function PathsModal() {
     <Sheet visible={A.pathsOpen} onClose={close}>
       {mode === "l" || !pe ? (
         <>
-          <Txt style={{ fontSize: 20, fontWeight: "700" }}>Caminhos do dia</Txt>
+          <Txt title style={{ fontSize: 20, fontWeight: "700" }}>
+            Caminhos do dia
+          </Txt>
           {PER.map(([pk, nm]) => {
             const ps = A.PA.filter((z) => z.per === pk);
             return (

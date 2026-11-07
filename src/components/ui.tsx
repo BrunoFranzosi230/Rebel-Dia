@@ -1,4 +1,4 @@
-import { useTheme } from "@/theme";
+import { useFont, useTheme } from "@/theme";
 import React from "react";
 import {
     Modal,
@@ -21,10 +21,19 @@ import {
 } from "react-native-safe-area-context";
 import Icon from "./Icon";
 
-export function Txt({ style, mu, ...p }: TextProps & { mu?: boolean }) {
-  const c = useTheme();
+export function Txt({
+  style,
+  mu,
+  title,
+  ...p
+}: TextProps & { mu?: boolean; title?: boolean }) {
+  const c = useTheme(),
+    font = useFont(title);
   return (
-    <Text {...p} style={[{ color: mu ? c.mu : c.tx, fontSize: 16 }, style]} />
+    <Text
+      {...p}
+      style={[{ color: mu ? c.mu : c.tx, fontSize: 16 }, style, font]}
+    />
   );
 }
 export const Label = ({ children }: { children: React.ReactNode }) => (
@@ -197,7 +206,8 @@ export function Field({
   style,
   ...p
 }: TextInputProps & { style?: StyleProp<TextStyle> }) {
-  const c = useTheme();
+  const c = useTheme(),
+    font = useFont();
   return (
     <TextInput
       placeholderTextColor={c.mu}
@@ -214,6 +224,7 @@ export function Field({
           color: c.tx,
         },
         style,
+        font,
       ]}
     />
   );
